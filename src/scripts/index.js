@@ -1,18 +1,23 @@
 function Palindrome(mot){
   mot = mot.replace(/[^0-9a-zA-Z]/g, '')
   mot = mot.toLowerCase()
-  console.log(mot)
   let i = 0
   let j = mot.length - 1
-  while(j > i){
+  let text = (() => {
+    while(j > i){
     if (mot[i] !== mot[j - i])
-      return false
+      return "N'est pas un palindrome"
     i++;
   }
-  return true
+  return "C'est un palindrome"
+ })()
+ document.getElementById("resultat").innerHTML = text;
 }
 
-let mot = prompt("Donner le mot")
+let entrer = document.getElementById("entrer")
+let mot = document.getElementById("mot")
 
-console.log(Palindrome(mot))
-
+entrer.addEventListener("click",() =>{
+  Palindrome(mot.value)
+  mot.value = ""
+})
